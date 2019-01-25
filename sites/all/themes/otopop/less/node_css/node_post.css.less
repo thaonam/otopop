@@ -1,0 +1,231 @@
+/*Node POST Teaser*/
+
+.node-post-teaser {
+  padding: 10px 0;
+
+  .author {
+    padding: 10px 0 10px 20px;
+
+    .avar-author {
+      margin-right: 12px;
+      width: 65px;
+      height: 65px;
+      flex: 0 0 65px;
+
+      img {
+        background: #fff;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        display: block;
+        border: 1px solid #ccc;
+      }
+    }
+
+    .name-author {
+      font-weight: 600;
+      flex: 0 0 100px;
+    }
+  }
+
+
+  .post-content > .field-body {
+    background: linear-gradient(to left, #fa8d76, #fec671);
+    display: block;
+    padding: 15px 20px;
+    color: #333;
+    border-radius: 12px;
+    box-shadow: 0 0 8px #ccc;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .post-content > .field-body.socialise {
+    //background: linear-gradient(to right, #f1e5b4, #c7e581) !important;
+  }
+
+  .list-img {
+    .list-img_title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    .field-name-field-images .field-items {
+      display: flex;
+
+      .field-item {
+        /* flex: 0 0 calc(33.33333333%); */
+        /* max-width: calc(33.33333333%); */
+        padding: 0 7px;
+      }
+    }
+  }
+
+  .list-action {
+    margin-top: 20px;
+
+    a {
+      text-align: center;
+      padding: 8px 20px;
+      background: #e4e4e4;
+      color: #333;
+      border-radius: 12px;
+      font-weight: 600;
+      margin-right: 10px;
+      -webkit-display: inline-flex;
+      -moz-display: inline-flex;
+      -ms-display: inline-flex;
+      -o-display: inline-flex;
+      -khtml-display: inline-flex;
+      display: inline-flex;
+
+      svg {
+        margin-right: 10px;
+
+      }
+
+      &.btn-like {
+        svg {
+          color: #2db5c3;
+        }
+      }
+
+      &.btn-comt {
+        svg {
+          color: #7b69d9;
+        }
+      }
+
+      &.btn-share {
+        svg {
+          color: #c99025;
+        }
+      }
+    }
+  }
+}
+
+/**
+*Node Post Manage
+**/
+
+
+.node-post-manager {
+  background: #f5f5f5;
+  margin-bottom: 20px;
+
+  .post-content {
+    padding: 20px 25px 0;
+  }
+
+  .post-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -moz-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .post-author {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -moz-box;
+      display: flex;
+      align-items: center;
+    }
+
+    .avar-author {
+      margin-right: 10px;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .name-author {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .post-date {
+      font-size: 13px;
+    }
+  }
+
+  .field-name-body {
+    margin: 20px 0 15px;
+  }
+
+  .post-img {
+    display: flex;
+    align-items: center;
+    margin: 0 -7px;
+
+    .img {
+      margin: 0 7px
+    }
+  }
+
+  .post-footer.list-action {
+    border-top: 1px solid #ddd;
+    margin-top: 25px;
+    padding: 10px 10px 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -moz-box;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+
+    a {
+      display: block;
+      //flex: 0 0 ~'calc((100% / 3) - 10px)';
+      text-align: center;
+      padding: 10px 20px;
+      background: #efefef;
+      border-radius: 12px;
+      width: 150px;
+
+      &.btn-like {
+        color: #f06838;
+      }
+
+      &.btn-comt {
+        color: #7b69d9;
+      }
+
+      &.btn-share {
+        color: #c99025;
+      }
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 30px;
+      background: #a5a5a5;
+      position: absolute;
+      top: 45%;
+      transform: translateY(-55%);
+      left: ~'calc((100% / 3) + 3px)';
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 30px;
+      background: #a5a5a5;
+      position: absolute;
+      top: 45%;
+      transform: translateY(-55%);
+      right: ~'calc((100% / 3) + 3px)';
+    }
+  }
+}

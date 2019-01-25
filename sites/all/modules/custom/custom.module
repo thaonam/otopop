@@ -1,0 +1,728 @@
+<?php
+/**
+ * Implements hook_cron().
+ */
+function custom_cron() {
+}
+
+/**
+ * Implements hook_init().
+ */
+function custom_init() {
+  
+  global $user;
+  
+  // Stop someone from accessing admin theme area.
+  if (arg(0) == 'admin' && $user->uid == 0) {
+    drupal_access_denied();
+    exit();
+  }
+  
+  // Load our helper functions module.
+  global $theme;
+  
+  if ($theme == 'otopop') {
+    // Required libraries.
+    module_load_include('inc', 'custom', 'includes/custom.helper');
+    // Load the js/css for every page.
+    drupal_add_library('system', 'ui.dialog');
+    drupal_add_library('system', 'ui.datepicker');
+    drupal_add_js(drupal_get_path('module', 'custom') . '/js/custom.helper.js');
+    drupal_add_js(drupal_get_path('module', 'custom') . '/js/custom.handler.js');
+  }
+  else {
+    if ($theme == 'seven' or $theme == 'otopopadmin') {
+      // Load libraries for admin theme.
+      drupal_add_js(drupal_get_path('module', 'custom') . '/js/custom.admin.js');
+      module_load_include('inc', 'custom', 'includes/custom.helper');
+      module_load_include('inc', 'custom', 'includes/custom.admin');
+    }
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function custom_permission() {
+  
+  return [
+    'administer custom settings' => [
+      'title' => t('Administer Project settings'),
+    ],
+  ];
+  
+}
+
+/**
+ * Implements hook_menu().
+ */
+function custom_menu() {
+  module_load_include('inc', 'custom', 'includes/custom.menu');
+  
+  return custom_menu_load();
+}
+
+/**
+ * Implements hook_menu_link_alter().
+ */
+function custom_menu_alter(&$items) {
+
+}
+
+/**
+ * Implements hook_custom_theme()
+ */
+function custom_custom_theme() {
+  // Switch admin theme for superadmin, and webmaster users.
+  if (arg(0) == 'admin' || (arg(0) == 'node' and arg(1) == 'add') || (arg(0) == 'node' and is_numeric(arg(1)) and arg(2) == 'edit') || (arg(0) == 'user' and is_numeric(arg(1)) and arg(2) == 'edit') || (arg(0) == 'file' and arg(1) == 'add') || (arg(0) == 'node' and arg(2) == 'translate') || (arg(0) == 'taxonomy' and arg(1) == 'term' and arg(3) == 'edit') || (arg(0) == 'node' and is_numeric(arg(1)) and arg(2) == 'webform')) {
+    // Switch to admin theme.
+    global $user;
+    if ($user->uid == 1) {
+      
+      // Developer theme.
+      return ['seven'];
+      
+    }
+    else {
+      if (isset($user->roles[3])) {
+        
+        // Webmaster theme.
+        return ['otopopadmin'];
+      }
+    }
+    
+  }
+}
+
+/**
+ * Implements hook_user_insert().
+ */
+function custom_user_insert(&$edit, $account, $category) {
+}
+
+/**
+ * Implements hook_user_load().
+ */
+function custom_user_load($users) {
+  foreach ($users as $uid => $account) {
+    // Load thumbnail if any.
+    if (isset($account->field_photo) and !empty($account->field_photo[LANGUAGE_NONE])) {
+      $users[$uid]->field_photo[LANGUAGE_NONE][0]['url'] = image_style_url('thumbnail', $account->field_photo[LANGUAGE_NONE][0]['uri']);
+    }
+  }
+}
+
+/**
+ * Implements hook_user_logout().
+ */
+function custom_user_logout($account) {
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function custom_user_login(&$edit, $account) {
+}
+
+/**
+ * Implements hook_user_view_alter().
+ */
+function custom_user_view_alter(&$build) {
+}
+
+/**
+ * Implements hook_preprocess_user_profile
+ */
+function custom_preprocess_user_profile(&$vars) {
+  if ($vars['elements']['#view_mode'] == 'teaser' || $vars['elements']['#view_mode'] == 'manage') {
+    $account = $vars['account'] = $vars['elements']['#account'];
+    $vars['uid'] = $account->uid;
+    $vars['user_profile']['name'] = $account->name;
+  }
+  
+  /*Custom file by view_mode*/
+  $vars['theme_hook_suggestions'][] = 'user_profile__' . $vars['elements']['#view_mode'];
+  
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function custom_block_info() {
+  $blocks = [];
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function custom_block_configure($delta = '') {
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function custom_block_save($delta = '', $edit = []) {
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function custom_block_view($delta = '') {
+  $block = [];
+  //switch ($delta) {
+  //case 'block_id':
+  //$block['content'] = '';
+  //break;
+  //}
+  return $block;
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function custom_preprocess_page(&$vars) {
+  //  dsm($vars['theme_hook_suggestions']);
+  global $theme;
+  global $user;
+  //Check Theme.
+  if ($theme == 'otopop') {
+    // Load library function.
+    drupal_add_js(drupal_get_path('module', 'custom') . '/js/custom.func.js');
+    
+    module_load_include('inc', ' ', 'includes/custom');
+    drupal_add_css(drupal_get_path('theme', 'otopop') . '/vendor/select2/css/select2.min.css');
+    drupal_add_js(drupal_get_path('theme', 'otopop') . '/vendor/select2/js/select2.min.js');
+    // Load user object if logged in.
+    if ($user->uid) {
+      $vars['account'] = user_load($user->uid);
+    }
+    //Check Page User /user
+    if (arg(0) == 'user') {
+      drupal_add_css(drupal_get_path('theme', 'otopop') . '/less/user.css.less');
+      
+      if (arg(1) == $user->uid && !(arg(2))) {
+        //Get event list.
+        $vars['event_list'] = views_embed_view('node_functions', 'block_1');
+        
+        /**Set Filter Joined Activity*/
+        // Step 1: Get all activity node ids this user has joint.
+        $joined_nids = [];
+        $view_request_activity = views_get_view_result('node_functions', 'block_16');
+        foreach ($view_request_activity as $item) {
+          if (!empty($item->field_field_activity)) {
+            $joined_nids[] = $item->field_field_activity[0]['raw']['target_id'];
+          }
+        }
+        // Step 2: Input this list to exclude from activity list.
+        if (!empty($joined_nids)) {
+          $vars['activity_list'] = views_embed_view('node_functions', 'block_3', join(',', $joined_nids));
+        }
+        else {
+          $vars['activity_list'] = views_embed_view('node_functions', 'block_3');
+        }
+        
+        /*set filters to View "Posts - Newspeed" from friends and yourself*/
+        $list_friend = custom_list_user_friends();
+        if (!empty($list_friend)) {
+          $vars['post_by_list_friend'] = views_embed_view('node_functions', 'block_2', $list_friend);
+        }
+        else {
+          $vars['post_by_list_friend'] = views_embed_view('node_functions', 'block_2');
+        }
+      }
+      
+      
+      if (arg(1) == 'manage' || arg(1) == 'profile') {
+        /**Count Number Post by uid.*/
+        $vars['post_number'] = count(views_get_view_result('node_functions', 'block_20'));
+        
+        /**Count Number User follower by Uid.*/
+        $vars['user_followers'] = count(views_get_view_result('node_functions', 'block_21'));
+        
+        /**Count Number User Following by Uid.*/
+        $vars['user_followings'] = count(views_get_view_result('node_functions', 'block_22'));
+      }
+      
+      
+      //Check Link Page Manage:
+      if (arg(1) == 'manage') {
+        // Insert file CSS LESS.
+        drupal_add_css(drupal_get_path('theme', 'otopop') . '/less/user_css/user-manager.css.less');
+        // Add Google location.
+        $google_api = variable_get('custom_google_api_key', '');
+        if ($google_api != '') {
+          drupal_add_js('https://maps.googleapis.com/maps/api/js?key=' . $google_api . '&libraries=places&language=en');
+          drupal_add_js(drupal_get_path('module', 'custom_google') . '/custom_google.js');
+        }
+        
+        if (arg(2) == 'activity' && is_numeric(arg(3))) {
+          /**Render view by term.*/
+          $vars['activity_by_term'] = views_embed_view('node_functions', 'block_27', arg(3));
+        }
+        if (arg(2) == 'events') {
+          drupal_add_js(drupal_get_path('module', 'custom') . '/js/custom.file.js');
+        }
+      }
+    }
+    if ($vars['is_front']) {
+      drupal_add_css(drupal_get_path('theme', 'otopop') . '/less/front.css.less');
+    }
+    
+    //Check Page Node
+    if (isset($vars['node']) and is_object($vars['node'])) {
+      
+      //Check Page Content Type "Landing Page".
+      if ($vars['node']->type == 'landing_page') {
+        drupal_add_css(drupal_get_path('theme', 'otopop') . '/less/landing_page.css.less');
+        drupal_add_js(drupal_get_path('module', 'custom') . '/js/custom.func.js');
+        
+        //Check Page Node 34:
+        if (arg(1) == '34') {
+          
+ 
+        }
+        
+      }
+      else {
+        drupal_add_css(drupal_get_path('theme', 'otopop') . '/less/node_css/node_' . $vars['node']->type . '.css.less');
+        
+      }
+    }
+  }
+}
+
+/**
+ * Implements custom_preprocess_imageblock_content().
+ */
+function custom_preprocess_imageblock_content(&$vars) {
+  $vars['theme_hook_suggestions'][] = $vars['theme_hook_original'] . '__' . $vars['block']->fid;
+  $vars['images_path'] = file_create_url($vars['path']);
+}
+
+/**
+ * Implements hook_theme().
+ */
+//function custom_theme($existing, $type, $theme, $path) {
+//}
+
+/**
+ * Implements hook_node_presave().
+ */
+function custom_node_presave($node) {
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function custom_node_insert($node) {
+  //Check content type
+  if ($node->type == 'past_record') {
+    // Create / update leader board.
+    $result = views_get_view_result('node_functions', 'block_18', $node->field_sport[LANGUAGE_NONE][0]['target_id']);
+    
+    if (!empty($result)) {
+      // Update leader board.
+      $leader_board = node_load($result[0]->nid);
+      $leader_board->field_meters[LANGUAGE_NONE][0]['value'] += $node->field_meters[LANGUAGE_NONE][0]['value'];
+      $leader_board->field_gym_time[LANGUAGE_NONE][0]['value'] += $node->field_gym_time[LANGUAGE_NONE][0]['value'];
+      node_save($leader_board);
+    }
+    else {
+      // Create a new leader board.
+      module_load_include('inc', 'custom', 'includes/custom.node');
+      $term = taxonomy_term_load($node->field_sport[LANGUAGE_NONE][0]['target_id']);
+      $name_term = $term->name;
+      $node_fields = [
+        'type' => 'leader_board',
+        'status' => 1,
+        'title' => $name_term . ' Process of ' . $node->name,
+        'field_sport' => ['target_id' => $node->field_sport[LANGUAGE_NONE][0]['target_id']],
+        'field_meters' => ['value' => $node->field_meters[LANGUAGE_NONE][0]['value']],
+        'field_gym_time' => ['value' => $node->field_meters[LANGUAGE_NONE][0]['value']],
+      ];
+      
+      $leader_board = custom_node_store(0, $node_fields);
+    }
+  }
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function custom_node_update($node) {
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function custom_node_delete($node) {
+}
+
+/**
+ * Implements hook_node_load().
+ */
+function custom_node_load($nodes, $types) {
+  //foreach ($nodes as $key => $node) {
+  //}
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function custom_node_view($node, $view_mode, $langcode) {
+  if ($view_mode == 'full') {
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function custom_preprocess_node(&$vars) {
+  //  global User
+  global $user;
+  
+  // Load user object if logged in.
+  if ($user->uid) {
+    $vars['account'] = user_load($user->uid);
+  }
+  
+  /*Custom file by view_mode*/
+  $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
+  
+  /*get data author by uid node*/
+  if ($vars['view_mode'] == 'teaser' || $vars['view_mode'] == 'teaser_2' || $vars['view_mode'] == 'manage' || $vars['view_mode'] == 'join') {
+    $vars['author'] = user_load($vars['node']->uid);
+  }
+  
+  if ($vars['type'] == "request_activity") {
+    if ($vars['view_mode'] == 'teaser') {
+      $vars['field_activity'] = node_load($vars['field_activity'][0]['target_id']);
+    }
+  }
+  elseif ($vars['type'] == 'landing_page') {
+    /*---- check nid -----*/
+    if ($vars['nid'] == '32') { // Page Socialise
+      
+      /*Set filters to View "Posts - Newsfeed" from friends and yourself*/
+      $list_friend = custom_list_user_friends();
+      if (!empty($list_friend)) {
+        $vars['post_by_list_friend'] = views_embed_view('node_functions', 'block_2', $list_friend);
+      }
+      else {
+        $vars['post_by_list_friend'] = views_embed_view('node_functions', 'block_2');
+      }
+      //End Fillter View: Posts- Newsfeed
+      
+      //View: Reload all users that the logged-in user has not tracked
+      $list_uids = [];
+      $view_friend = views_get_view_result('node_functions', 'block_17');
+      foreach ($view_friend as $item) {
+        if (!empty($item->field_field_member)) {
+          $list_uids[] = $item->field_field_member[0]['raw']['target_id'];
+        }
+      }
+      // Step 2: Input this list to exclude from activity list.
+      if (!empty($list_uids)) {
+        $vars['friend_not_follow'] = views_embed_view('user_functions', 'block_1', join(',', $list_uids));
+      }
+      else {
+        $vars['friend_not_follow'] = views_embed_view('user_functions', 'block_1');
+      }
+      //End Reload all users that the logged-in user has not tracked
+      
+      //View: Reload all groups that the logged in user has not joined yet
+      $list_group_join = [];
+      $view_group = views_get_view_result('node_functions', 'block_19');
+      foreach ($view_group as $item) {
+        if (!empty($item->field_field_group)) {
+          $list_group_join[] = $item->field_field_group[0]['raw']['target_id'];
+        }
+      }
+      // Step 2: Input this list to exclude from activity list.
+      if (!empty($list_group_join)) {
+        $vars['group_new_block_8'] = views_embed_view('node_functions', 'block_8', join(',', $list_group_join));
+      }
+      else {
+        $vars['group_new_block_8'] = views_embed_view('node_functions', 'block_8');
+      }
+      //End Reload all groups that the logged in user has not joined yet
+      
+      //Get view node-functions block 9 - My statistic
+      $vars['my_statistic_block_9'] = views_embed_view('node_functions', 'block_9');
+      
+      //Get view  node-functions block 45 - Forum
+      $vars['forum_block_45'] = views_embed_view('node_functions', 'block_45');
+      
+    }else if($vars['nid']==34){
+      $joined_nids = [];
+      $view_request_activity = views_get_view_result('node_functions', 'block_16');
+      foreach ($view_request_activity as $item) {
+        if (!empty($item->field_field_activity)) {
+          $joined_nids[] = $item->field_field_activity[0]['raw']['target_id'];
+        }
+      }
+      if (!empty($joined_nids)) {
+        $vars['activity_list_exercise'] = views_embed_view('node_functions', 'block_30', join(',', $joined_nids));
+      }
+      else {
+        $vars['activity_list_exercise'] = views_embed_view('node_functions', 'block_30');
+      }
+    }
+    /*----- End Check -----*/
+  }
+  elseif ($vars['type'] == 'post' || $vars['type'] == 'leader_board') {
+    if ($vars['view_mode'] == 'manage') {
+      module_load_include('inc', 'custom', 'includes/custom.node'); //add custom.node.inc
+    }
+  }
+  elseif ($vars['type'] == 'past_record') {
+    if ($vars['view_mode'] == 'full' || $vars['view_mode'] == 'manage') {
+      module_load_include('inc', 'custom', 'includes/custom.node');
+    }
+  }
+  elseif ($vars['type'] == "open_activity") {
+    if ($vars['view_mode'] == 'manage') {
+      $nid = $vars['node']->nid;
+      $vars['view_joien_activity'] = views_get_view_result('node_functions', 'block_42', $nid);
+    }
+  }
+}
+
+/**
+ * Implement hook_form_alter().
+ */
+function custom_form_alter(&$form, $form_state, $form_id) {
+  //global $user;
+  switch ($form_id) {
+    case 'user_login':
+      // Enable some social login for demo purpose.
+      if (module_exists('custom_facebook')) {
+        $form['facebook_login'] = [
+          '#markup' => '<div class="line-or">Or</div><div class="group-btn" ><div class="btn-facebook" aria-hidden="true" id="facebookSignin" title="Login with Facebook">Facebook</div>',
+        ];
+        
+        custom_facebook_enable_login_button();
+      }
+      
+      if (module_exists('custom_google')) {
+        $form['google_login'] = [
+          
+          '#markup' => '<div class="btn-google" aria-hidden="true" id="googleSignIn" title="Login with Google">Google</div></div>',
+        ];
+        
+        custom_google_enable_login_button();
+      }
+      
+      break;
+    
+    case 'user_login_block':
+      $form['name']['#attributes']['placeholder'] = t('Email *');
+      $form['pass']['#attributes']['placeholder'] = t('Password *');
+      
+      // Enable social login.
+      if (module_exists('custom_facebook')) {
+        $form['facebook_login'] = [
+          '#markup' => '<div class="line-or">Or</div><div class="group-btn" ><div class="btn-facebook" aria-hidden="true" id="facebookSignin" title="Login with Facebook">Facebook</div>',
+        ];
+        
+        custom_facebook_enable_login_button();
+      }
+      
+      if (module_exists('custom_google')) {
+        $form['google_login'] = [
+          
+          '#markup' => '<div class="btn-google" aria-hidden="true" id="googleSignIn" title="Login with Google">Google</div></div>',
+        ];
+        
+        custom_google_enable_login_button();
+      }
+      
+      break;
+    
+    case 'user_register_form':
+      // Enable social login.
+      if (module_exists('custom_facebook')) {
+        custom_facebook_enable_login_button();
+      }
+      
+      if (module_exists('custom_google')) {
+        custom_google_enable_login_button();
+      }
+      
+      break;
+    
+    case 'user_pass':
+      
+      break;
+    
+    case 'event_node_form':
+      break;
+    
+    case 'views_exposed_form':
+      $view = $form_state['view'];
+      /*Check View Name*/
+      if ($view->name == 'node_functions') {
+        
+        if ($view->current_display == 'block_3' || $view->current_display == 'block_30') {
+          foreach ($form['field_sport_type_tid']['#options'] as $key => $value) {
+            if ($key != "All") {
+              $term_load = taxonomy_term_load($key); //Load Term Id ($key = tid)
+              $image_tid = image_style_url('style_90x90', $term_load->field_image['und'][0]['uri']); //Get Path link image of taxonomy
+              $form['field_sport_type_tid']['#options'][$key] = '<div class="field_img_term"> <img src="' . $image_tid . '">  ' . $value . '</div>';
+            }
+            else {
+              $form['field_sport_type_tid']['#options'][$key] = '<div class="field_all">All</div>';
+            }
+          }
+        }
+      }
+      break;
+  }
+}
+
+/**
+ * Implement hook_field_widget_form_alter().
+ */
+function custom_field_widget_form_alter(&$element, &$form_state, $context) {
+  //  krumo($context);
+  //  dsm($element);
+  //  dsm($form_state);
+}
+
+/**
+ * Implement hook_views_pre_render().
+ */
+function custom_views_pre_render(&$view) {
+  global $base_url;
+  if ($view->name == 'node_functions') {
+    
+    switch ($view->current_display) {
+      case 'attachment_3':
+      case'page_4':
+      case'page_5':
+        
+        if (!empty($view->result)) {
+          module_load_include('inc', 'custom', 'includes/custom.node');
+          
+          foreach ($view->result as $key => $item) {
+            $item->field_field_meters[0]['rendered']['#markup'] = $item->field_field_meters[0]['raw']['value'] = number_format(intval($item->field_field_meters[0]['raw']['value']) / 1000, 1, '.', ' ') . 'km';
+            $item->field_field_gym_time[0]['rendered']['#markup'] = $item->field_field_gym_time[0]['raw']['value'] = custom_time_format_duration($item->field_field_gym_time[0]['rendered']['#markup'], '');
+          }
+        }
+        break;
+      
+      case 'block_34':
+        
+        break;
+    }
+  }
+}
+
+/**
+ * Implement hook_preprocess_views_view().
+ */
+function custom_preprocess_views_view(&$vars) {
+  //  dsm($vars['display_id']);
+  
+  if ($vars['name'] == 'node_functions') {
+    if ($vars['display_id'] == 'page_6') {
+      $vars['block_user_follower'] = views_embed_view('node_functions', 'block_23');
+      $vars['block_user_following'] = views_embed_view('node_functions', 'block_5');
+      $vars['block_user_know'] = views_embed_view('user_functions', 'block_3');
+    }
+    elseif ($vars['display_id'] == 'page_3') {
+      $vars['block_my_groups'] = views_embed_view('node_functions', 'block_25');
+    }
+    elseif ($vars['display_id'] == 'block_27') {
+      global $user;
+      // Load user object if logged in.
+      if ($user->uid) {
+        $vars['account'] = user_load($user->uid);
+        $vars['account_uid'] = $user->uid;
+      }
+      // Get tid from contextual argument of the view
+      $tid = $vars['view']->args[0];
+      // Load the Term Entity
+      $term = taxonomy_term_load($tid);
+      // Term Title
+      $vars['taxonomy_title'] = $term->name;
+    }
+    elseif ($vars['display_id'] == 'page_1') {
+      drupal_add_js(drupal_get_path('module', 'custom') . '/js/custom.func.js');
+      
+      global $user;
+      // Load user object if logged in.
+      if ($user->uid) {
+        $vars['account'] = user_load($user->uid);
+      }
+    }
+  }
+  elseif ($var['name'] = 'user_functions') {
+    if ($var['display_id'] = 'block_1') {
+      drupal_add_js(drupal_get_path('module', 'custom') . '/js/custom.func.js');
+    }
+  }
+}
+
+/**
+ * Implement hook_preprocess_views_view_fields().
+ */
+function custom_preprocess_views_view_fields(&$vars) {
+  $view = $vars['view'];
+  if ($view->current_display == 'page_1' && $view->name == 'taxonomy_functions') {
+    
+    $term = taxonomy_term_load($vars['row']->tid); // load term object
+    $term_uri = taxonomy_term_uri($term); // get array with path
+    $term_path = explode('/', drupal_get_path_alias($term_uri['path']));
+    $vars['link_new_term'] = '/user/manage/activity/' . $vars['row']->tid;
+    
+  }
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function custom_views_api() {
+}
+
+/**
+ * Implements hook_mail().
+ */
+function custom_mail($key, &$message, $params) {
+  module_load_include('inc', 'custom', 'includes/custom.mail');
+  custom_mail_get_message($key, $message, $params);
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function custom_mail_alter(&$message) {
+
+}
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function custom_ctools_plugin_api($owner, $api) {
+  if ($owner == 'services' && $api == 'services') {
+    return ['version' => 3, 'file' => 'custom.services.inc',];
+  }
+}
+
+/**
+ * Implements hook_rest_server_request_parsed_alter().
+ * Fix auto login after register issue (session token).
+ */
+function custom_rest_server_request_parsed_alter(&$data, $controller) {
+  // If services was requested to log in user
+  if ('_user_resource_login' == $controller['callback']) {
+    // Force the current user to anonymous
+    if (user_is_logged_in()) {
+      global $user;
+      $user = drupal_anonymous_user();
+    }
+  }
+}
+
+

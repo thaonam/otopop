@@ -1,0 +1,560 @@
+@import 'node_css/node_open_activity.css.less';
+@import 'node_css/node_post.css.less';
+@import 'node_css/node_forum.css.less';
+@import 'node_css/node_event.css.less';
+@import 'node_css/node_group.css.less';
+@import 'node_css/node_e_medal.css.less';
+@import 'node_css/node_request_challenge.css.less';
+@import 'node_css/node_past_record.css.less';
+@import 'user_css/_user-profile.css.less';
+
+body {
+  background: #fcfcfc;
+}
+
+@media (min-width: 1430px) {
+  .container {
+    width: 1400px !important;
+    max-width: 1400px;
+  }
+}
+
+.info-acc__right {
+  a#dropdownMenuLink {
+    background: transparent;
+    border: 0;
+
+    &:hover, &:focus {
+      outline: none;
+    }
+  }
+}
+
+.info-acc__ava-name {
+  .ava {
+    img {
+      background: #fff;
+      border-radius: 50%;
+    }
+  }
+
+  .name {
+    font-size: 16px;
+    color: #fff;
+    margin-left: 10px;
+    font-weight: 600;
+  }
+}
+
+#edit-field-sport-type-tid-wrapper {
+  width: 100%;
+}
+
+.block-activity-exercise {
+  #edit-field-sport-type-tid-wrapper {
+    width: 100%;
+  }
+
+  .disabled .item-0 {
+    display: inline-block;
+  }
+
+  .form-item-field-sport-type-tid input {
+    z-index: -9;
+    opacity: 0;
+    position: absolute;
+  }
+
+  .field_img_term {
+    position: relative;
+
+    img {
+      background: linear-gradient(to left, #f8ebdb, #eeefc5);
+      border-radius: 7px;
+    }
+  }
+
+  input[checked="checked"] + .field_img_term, input[checked="checked"] + .field_all {
+    position: relative;
+  }
+
+  .field_all {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  input[checked="checked"] + .field_img_term:before, input[checked="checked"] + .field_all:before {
+    border-bottom: 0;
+    border-right: 7px solid transparent;
+    border-top: 11px solid #f4ecd5;
+    border-left: 7px solid transparent;
+    content: '';
+    /* width: 16px; */
+    /* height: 50px; */
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .block-title {
+    background: url("../images/activity_big.png");
+    height: 125px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: left center;
+    margin: 0;
+    font-size: 0;
+  }
+
+  .owl-wrapper {
+    display: flex !important;
+
+    .owl-item {
+      > div {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  .view-header {
+    position: absolute;
+    right: 10px;
+    top: -35px;
+    color: #f56705;
+    font-weight: 600;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .owl-sport-activity-10slide {
+
+    label.control-label {
+      font-size: 0;
+      margin-bottom: 10px;
+      padding-left: 0;
+    }
+
+    label[for="edit-field-sport-type-tid-all"] {
+      font-size: 16px !important;
+      width: 90px;
+      height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      padding: 0;
+      margin: 0 auto;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+    }
+  }
+
+  .view-display-id-block_5 {
+    background: #fff;
+    box-shadow: 0 0 black;
+    position: relative;
+    box-shadow: 0px 3px 12px 0px #ccc;
+    margin-top: -6px;
+    padding: 20px 5px;
+    background: #fff;
+    //min-height: 400px;
+
+  }
+
+  .view-content {
+    height: auto !important;
+
+    .owl-buttons {
+      display: none;
+    }
+
+  }
+
+  .owl-carousel-block_5.disabled > div {
+    width: calc(100% / 4);
+  }
+}
+
+.dropdown-menu.show ul {
+  padding: 5px 20px;
+  list-style-type: none;
+
+  li {
+    padding: 5px 0;
+  }
+}
+
+.node-page-teaser {
+  header.masthead .site-heading {
+    text-align: left !important;
+  }
+}
+
+.block-global-header-bg {
+  .block-title {
+    height: 135px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: left center;
+    margin: 0;
+    font-size: 0;
+  }
+
+  .view-header {
+    position: absolute;
+    right: 10px;
+    top: -45px;
+    color: #f56705;
+    font-weight: 600;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .view-id-node_functions {
+    background: #fff;
+    position: relative;
+    box-shadow: 0px 3px 12px 0px #ccc;
+    margin-top: -10px;
+    padding: 20px 20px;
+    background: #fff;
+  }
+}
+
+/*block-views-node-functions-block-2*/
+#block-views-node-functions-block-2 {
+  margin-top: 30px;
+
+  .block-title {
+    background-image: url("../images/newsfeed.png");
+  }
+}
+
+/*block-views-user-functions-block-1*/
+#block-views-user-functions-block-1 {
+  .block-title {
+    background-image: url("../images/connect-with-friends.png");
+    height: 125px;
+  }
+
+  .socialise {
+    background-image: url("../images/connect-with-friends-socialise.jpg") !important;
+    height: 125px;
+  }
+
+  .view-user-functions {
+    position: relative;
+    box-shadow: 0px 3px 12px 0px #ccc;
+    margin-top: -10px;
+    padding: 10px 20px;
+    padding-top: 30px;
+    background: #fff;
+    //min-height: 400px;
+    &:before, &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+/*block-views-node-functions-block-6*/
+#block-views-node-functions-block-6 {
+  margin-top: 30px;
+
+  .block-title {
+    background-image: url("../images/Joined-Activity.png");
+  }
+}
+
+/*block-views-node-functions-block-7*/
+#block-views-node-functions-block-7 {
+  margin-top: 30px;
+
+  .block-title {
+    background-image: url("../images/Past-Record.png");
+  }
+}
+
+/*block-views-node-functions-block-8*/
+#block-views-node-functions-block-8 {
+  .block-title {
+    background-image: url("../images/dicover-group.png");
+  }
+
+  .socialise {
+    background-image: url("../images/discover-groups-socialise.png") !important;
+  }
+
+  .view-id-node_functions {
+    margin-top: -10px;
+  }
+}
+
+/*block-views-node-functions-block-9*/
+#block-views-node-functions-block-9 {
+  .block-title {
+    background-image: url("../images/my-statictis.png");
+  }
+
+  .view-id-node_functions {
+    margin-top: -10px;
+    height: 322px;
+
+  }
+}
+
+/*block-views-node-functions-block-10*/
+#block-views-node-functions-block-10 {
+  .block-title {
+    background-image: url("../images/social-lead.png");
+  }
+
+  .view-display-id-block_10 {
+    .row {
+      display: flex;
+      align-items: center;
+    }
+
+    .view-display-id-attachment_2 {
+      box-shadow: none;
+      margin-top: 0;
+      padding: 0 20px;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 100%;
+        position: absolute;
+        background: #cccccc54;
+        right: 0;
+        top: 0;
+        box-shadow: 3px -1px 8px 0px #ccc;
+      }
+
+      .views-row {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .views-field-field-photo {
+        }
+
+        .views-field-counter {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 16px;
+          font-weight: 600;
+          border-radius: 50%;
+          background: #ccc;
+          margin-right: 15px;
+          margin-left: 15px;
+          margin-top: 10px;
+          align-self: flex-start;
+          color: #fff;
+        }
+
+        .views-field-field-full-name {
+          font-size: 16px;
+          font-weight: 600;
+        }
+
+        .views-field-field-meters {
+          font-weight: 400;
+          margin-top: 10px;
+          font-size: 15px;
+          margin-bottom: 10px;
+        }
+
+        &.views-row-1 {
+          .views-field-counter {
+            background-color: #fde32b;
+          }
+        }
+
+        &.views-row-2 {
+          .views-field-counter {
+            background-color: #f88616;
+          }
+        }
+
+        &.views-row-3 {
+          .views-field-counter {
+            background-color: #59db81;
+          }
+        }
+      }
+    }
+
+    table {
+      margin-bottom: 0;
+
+      tr {
+        &:nth-of-type(odd) {
+          background: transparent;
+        }
+
+        td {
+          &.views-field-counter {
+            font-weight: 700;
+            text-align: center;
+          }
+
+          &.views-field {
+            border-top: 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 12px;
+            padding-top: 12px;
+          }
+
+          &.views-field-field-full-name {
+            font-weight: 600;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*block-views-node-functions-block-11*/
+#block-views-node-functions-block-11 {
+  .block-title {
+    background-image: url("../images/list-challenge.png");
+  }
+}
+
+/*block-views-node-functions-block-12*/
+#block-views-node-functions-block-12 {
+  .block-title {
+    background-image: url("../images/challenge-record.png");
+  }
+
+  .view-id-node_functions {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 30px;
+    height: 340px;
+  }
+
+  .views-row {
+    border-bottom: 1px solid #ccc;
+
+    display: flex;
+    align-items: center;
+
+    .item-number {
+      width: 85px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 18px;
+      color: #333;
+    }
+  }
+}
+
+/*block-views-node-functions-block-13*/
+#block-views-node-functions-block-13 {
+  .block-title {
+    background-image: url("../images/achievement.png");
+  }
+}
+/*block-views-node-functions-block-45*/
+#block-views-node-functions-block-45 {
+  .block-title {
+   font-size: 30px ;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/*block-views-node-functions-block-14*/
+#block-views-node-functions-block-14 {
+  .block-title {
+    background-image: url("../images/my-posts.png");
+  }
+
+  .socialise {
+    background-image: url("../images/my-posts-socialise.png");
+  }
+}
+
+body.page-node-32 #block-views-node-functions-block-14 .block-title {
+  background-image: url("../images/my-posts-socialise.jpg");
+}
+
+body.page-node-33 {
+  #block-views-node-functions-block-11 .block-title {
+    background-image: url("../images/list-challenge-compete.png");
+  }
+  #block-views-node-functions-block-12 .block-title {
+    background-image: url("../images/challenge-record-compete.png");
+  }
+  #block-views-node-functions-block-13 .block-title {
+    background-image: url("../images/achievement-compete.jpg");
+  }
+}
+
+body.page-node-34 {
+  #block-views-node-functions-block-30 .block-title {
+    background-image: url("../images/discover-activity-panel-title-exercise.jpg");
+  }
+  #block-views-node-functions-block-6 .block-title {
+    background-image: url("../images/joined-activity-panel-title-exercise.png");
+  }
+  #block-views-node-functions-block-7 .block-title {
+    background-image: url("../images/past-record-panel-title-exercise.png");
+  }
+}
+
+section#block-views-node-functions-block-6,
+section#block-views-node-functions-block-7 {
+  .view-id-node_functions {
+    height: 320px;
+  }
+}
+
+.page-node-32 {
+  #block-views-node-functions-block-44{
+    .block-title{
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  #block-views-node-functions-block-2 {
+    .views-row  {
+      .node-post-teaser {
+        .post-content > .field-body {
+          background: linear-gradient(to right, #f1e5b4, #c7e581) !important;
+        }
+      }
+    }
+  }
+}
+
+

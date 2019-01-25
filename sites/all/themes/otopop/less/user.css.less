@@ -1,0 +1,239 @@
+/* main.less */
+@import "user_css/_user-register.css.less";
+@import "user_css/_user-dashboard.css.less";
+@import "user_css/_user-profile.css.less";
+@import "node_css/node_leader_board.css.less";
+@import "node_css/node_request_challenge.css.less";
+
+
+.filter-select-2 {
+  .select2-container--default .select2-selection--single {
+    background: transparent;
+    text-align: right;
+    border: 0;
+
+    &:focus, &:hover, &:active {
+      outline: none;
+    }
+  }
+}
+
+.navbar-right a:hover {
+  background: transparent !important;
+}
+
+/*
+* Sidebar Right: Block Info User
+* @see : Region Right in
+* @link: Page: /user/manage/leaderboard , /user/profile
+*/
+
+.block-manage-right {
+  padding: 0 20px 20px 20px;
+  position: relative;
+
+  .block-title {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+//View Block Leaderboard and the current rating of the login user
+.filter-select-2 .view-filters {
+  position: absolute;
+  top: 15px;
+  right: 0px;
+}
+
+#block-views-node-functions-block-33 {
+  .block-title {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 0;
+  }
+
+  .views-row {
+    padding: 10px;
+    margin: 5px 0;
+
+    .number-medal {
+      background: #fff;
+      width: 22px;
+      height: 22px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -moz-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 9;
+      font-weight: 500;
+      font-size: 13px;
+    }
+
+    &.my-leaderboard {
+      background: #ddd;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      border: 1px solid #fff
+    }
+
+    .number-0 {
+      background: #f15a25;
+      color: #fff;
+    }
+
+    .number-1 {
+      background: #f9b001;
+      color: #fff;
+    }
+
+    .number-2 {
+      background: #33de8e;
+      color: #fff;
+    }
+
+    .my-number {
+      background: #4f4f4f;
+      color: #fff;
+    }
+  }
+}
+
+.view-id-node_functions {
+  &.view-display-id-block_26 {
+    .view-filters {
+      position: absolute;
+      top: 10px;
+      right: 5px;
+
+      select {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        outline: none;
+        text-align: right;
+      }
+
+      .select2-selection__rendered {
+        text-align: right;
+        border: 0;
+      }
+
+      .select2-selection--single {
+        border: 0 !important;
+        background: transparent !important;
+      }
+    }
+
+    .views-row {
+      padding-top: 20px;
+
+      &:not(:last-child) {
+        border-bottom: 2px solid #f3f3f3;
+        padding-bottom: 20px;
+      }
+    }
+  }
+}
+
+.page-user-profile, .page-user-manage {
+  @media (min-width: 992px) {
+    .sidebar.right {
+      width: 34%;
+    }
+
+    .content-manage {
+      width: 66%;
+    }
+  }
+}
+
+//ui-dialog
+.ui-dialog {
+  border-radius: 10px;
+
+  .ui-dialog-titlebar.ui-widget-header {
+    background: transparent;
+    border: 0;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+  }
+
+  button.ui-dialog-titlebar-close {
+    border: 0;
+    background: transparent;
+
+    &:before {
+      content: '\f00d';
+      font-family: FontAweSome;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  }
+
+  .ui-dialog-buttonset > button {
+    padding: 6px 20px;
+    border: 0;
+    border-radius: 10px;
+
+    &:focus, &:active, &:hover {
+      outline: none;
+    }
+  }
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 100px;
+}
+
+.no-border {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.view-display-id-page_1, .page-user-profile {
+  .panel {
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    .send {
+      background-color: #f26b46;
+      border-color: #f26b46;
+      color: #fff;
+    }
+  }
+}
+
+.page-user-profile {
+  .main-sidebar {
+    padding-top: 120px;
+    min-height: calc(100%);
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    z-index: 810;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    -moz-transition: -moz-transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    -o-transition: -o-transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    background-color: #f5f5f5;
+  }
+}
+
+/*
+ * End Style: @link: Page: /user/manage/leaderboard , /user/profile
+ */
+
+
+

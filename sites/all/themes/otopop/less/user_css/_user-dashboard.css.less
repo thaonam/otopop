@@ -1,0 +1,375 @@
+@import "../node_css/node_event.css.less";
+@import "../node_css/node_open_activity.css.less";
+@import "../node_css/node_post.css.less";
+@import "../node_css/node_past_record.css.less";
+
+body.page-user {
+  background: #fcfcfc;
+}
+
+//Dropdown Menu Header
+.dropdown-menu.show ul {
+  padding: 5px 20px;
+  list-style-type: none;
+
+  li {
+    padding: 5px 0;
+  }
+}
+
+.info-acc__right {
+  a#dropdownMenuLink {
+    background: transparent;
+    border: 0;
+
+    &:hover, &:focus {
+      outline: none;
+    }
+  }
+}
+
+.info-acc__ava-name {
+  .ava {
+    img {
+      background: #fff;
+      border-radius: 50%;
+    }
+  }
+
+  .name {
+    font-size: 16px;
+    color: #fff;
+    margin-left: 10px;
+    font-weight: 600;
+  }
+}
+
+//Input active checked - filter term
+input[checked="checked"] {
+  & + .field_img_term, & + .field_all {
+    position: relative;
+
+    &:before {
+      border-bottom: 0;
+      border-right: 7px solid transparent;
+      border-top: 11px solid #f4ecd5;
+      border-left: 7px solid transparent;
+      content: '';
+      /* width: 16px; */
+      /* height: 50px; */
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.field_all {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#edit-field-sport-type-tid-wrapper {
+  width: 100%;
+}
+
+//block events
+#block-views-node-functions-block-1 {
+  .block-title {
+    background: url("../../images/event.png");
+    height: 125px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    margin: 0;
+    font-size: 0;
+  }
+
+  .view-header {
+    position: absolute;
+    right: 10px;
+    top: -45px;
+    color: #f56705;
+    font-weight: 600;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .view-display-id-block_1 {
+    position: relative;
+    box-shadow: 0px 3px 12px 0px #ccc;
+    margin-top: -6px;
+    padding: 10px 20px;
+    background: #fff;
+    min-height: 335px;
+
+  }
+
+  .field.field-name-field-date {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    &:after {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 1px;
+      background: #333;
+      position: absolute;
+      right: 3px;
+      top: 0;
+    }
+  }
+}
+
+//block-views-node-functions-block-2
+#block-views-node-functions-block-2 {
+  margin-top: 30px;
+
+  .block-title {
+    background: url("../../images/newsfeed.png");
+    height: 135px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: left center;
+    margin: 0;
+    font-size: 0;
+  }
+
+  .view-header {
+    position: absolute;
+    right: 10px;
+    top: -45px;
+    color: #f56705;
+    font-weight: 600;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .view-display-id-block_2 {
+    min-height: 335px;
+    background: #fff;
+    box-shadow: 0 0 black;
+    position: relative;
+    box-shadow: 0px 3px 12px 0px #ccc;
+    margin-top: -6px;
+    padding: 20px 20px;
+    background: #fff;
+  }
+}
+
+
+//block-views-node-functions-block-3
+#block-views-node-functions-block-3 {
+  .form-item-field-sport-type-tid input {
+    z-index: -9;
+    opacity: 0;
+    position: absolute;
+  }
+
+  .block-title {
+    background: url("../../images/discover_activity.png");
+    height: 125px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: left center;
+    margin: 0;
+    font-size: 0;
+  }
+
+  .owl-wrapper {
+    display: flex !important;
+
+    .owl-item {
+      > div {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .node-open-activity-teaser {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .button_action {
+          margin-top: auto;
+
+          .btn-join {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .field_img_term img {
+    background: linear-gradient(to left, #f8ebdb, #eeefc5);
+    border-radius: 7px;
+  }
+
+  .view-header {
+    position: absolute;
+    right: 10px;
+    top: -45px;
+    color: #f56705;
+    font-weight: 600;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .owl-sport-activity {
+    label.control-label {
+      font-size: 0;
+      margin-bottom: 10px;
+      padding-left: 0;
+    }
+
+    label[for="edit-field-sport-type-tid-all"] {
+      font-size: 16px !important;
+      width: 90px;
+      height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      padding: 0;
+      margin: 0 auto;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+    }
+  }
+
+  .view-display-id-block_3 {
+    background: #fff;
+    box-shadow: 0 0 black;
+    position: relative;
+    box-shadow: 0px 3px 12px 0px #ccc;
+    margin-top: -6px;
+    padding: 20px 20px;
+    background: #fff;
+    min-height: 335px;
+  }
+
+  .view-content {
+    height: auto !important;
+
+    .owl-buttons {
+      display: none;
+    }
+
+  }
+
+  .owl-carousel-block_32.disabled > div {
+    width: calc(100% / 4);
+  }
+}
+
+.block-3-circle-menu {
+  .views-row {
+    text-align: center;
+
+    .views-field.views-field-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      right: auto;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      transition: .5s ease;
+      background-color: #fa6b46;
+      width: 300px;
+      height: 300px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      display: flex;
+      span.field-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    img {
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    &:hover .views-field.views-field-title {
+      opacity: 1;
+      z-index: 999;
+
+      a {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+
+
+.page-user-manage.page-user-manage-personal-statistic{
+
+  section#block-imageblock-6 {
+
+    .block-body {
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 40px;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+
+  .view-display-id-page_13 .page-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 20px 0;
+  }
+}
+
+

@@ -1,0 +1,277 @@
+.node-group-teaser {
+  padding: 12px 0;
+
+  h2 {
+    margin-top: 0;
+    font-size: 20px;
+
+    a {
+      font-size: inherit;
+      color: initial;
+      font-weight: 600;
+    }
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .field_img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #fff;
+
+    img {
+      height: 100%;
+      width: 100%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+    }
+  }
+
+  .field-name-field-date {
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .field_map {
+    display: flex;
+
+    svg {
+      margin-right: 5px;
+      margin-top: 2px;
+      color: #08750a;
+    }
+  }
+.field-title{
+  font-size: 16px;
+  font-weight: 600;
+}
+  .field_content > * {
+    padding-left: 15px;
+  }
+
+  .field.field-name-field-date {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    &:after {
+      content: '';
+      display: block;
+      height: 70%;
+      width: 1px;
+      background: #333;
+      position: absolute;
+      right: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .field_date {
+    font-size: 20px;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+
+    span:first-child {
+      line-height: 1.2;
+      font-size: 24px;
+      font-weight: bold;
+
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 1px;
+      height: 70%;
+      background: #333;
+      right: -10px;
+    }
+  }
+
+  .button_action {
+    margin-top: auto;
+
+    a.btn-join {
+      background: linear-gradient(to left, #a4e740, #43e764);
+      /* display: block; */
+      padding: 8px 9px;
+      display: inline-block;
+      width: 80px;
+      text-align: center;
+      color: #333;
+      border-radius: 10px;
+      margin-top: 6px;
+    }
+  }
+}
+
+/**
+*Node Group Manage
+**/
+.node-group-manage {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 46px 0;
+  border-bottom: 1px solid #ddd;
+
+  .field-image {
+    margin-right: 30px;
+    margin-left: 20px;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+
+  .group-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+
+  .list-circle {
+    margin-bottom: 10px;
+
+    span {
+      width: 30px;
+      height: 30px;
+      background: #ccc;
+      display: inline-block;
+      border-radius: 50%;
+    }
+  }
+
+  .field-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .button_action {
+    margin-left: auto;
+
+    a.btn-join {
+      width: 120px;
+      display: block;
+      text-align: center;
+      background: #cccccc;
+      padding: 10px;
+      border-radius: 15px;
+      margin-right: 15px;
+    }
+  }
+
+}
+
+/**
+*Node Group Teaser2 (My Group)
+**/
+.node-group-teaser-2 {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 46px 0;
+  border-bottom: 1px solid #ddd;
+
+  .field-image {
+    margin-right: 30px;
+    margin-left: 20px;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+
+  .group-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+
+  .list-circle {
+    margin-bottom: 10px;
+
+    span {
+      width: 30px;
+      height: 30px;
+      background: #ccc;
+      display: inline-block;
+      border-radius: 50%;
+    }
+  }
+
+  .field-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .button_action {
+    margin-left: auto;
+    margin-bottom: auto;
+
+    a.btn-join {
+      width: 120px;
+      display: block;
+      text-align: center;
+      background: #cccccc;
+      padding: 10px;
+      border-radius: 15px;
+      margin-right: 15px;
+    }
+
+    button.dropdown-toggle {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      margin-bottom: auto;
+
+      &:hover, &:active {
+        background: transparent;
+      }
+    }
+    .dropdown-menu{
+      right: -20px;
+      margin-top: 14px;
+      border: 0;
+      background: #ddd;
+      font-weight: 600;
+      a{
+        font-weight: 600;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        border-top: 15px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 15px solid #ddd;
+        border-left: 6px solid transparent;
+        top: -30px;
+        right: 20px;
+      }
+    }
+  }
+
+}
+

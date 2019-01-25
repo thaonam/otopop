@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * Implements hook_permission().
+ */
+function custom_google_permission() {
+  return array(
+    'administer custom google settings' => array(
+      'title' => t('Administer google settings'),
+      'description' => t('Perform administration tasks for Google.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function custom_google_menu() {
+  $items = array();
+
+  $items['admin/config/custom_google'] = array(
+    'title' => 'Google settings',
+    'description' => t('Google Auth API settings'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('custom_google_settings_form'),
+    'access arguments' => array('administer custom google settings'),
+    'file' => 'custom_google.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Function to enable Google login for the caller site.
+ */
+function custom_google_enable_login_button() {
+  $google_app_id = variable_get('custom_google_app_id', '');
+  if ($google_app_id != '') {
+    drupal_add_js(array('custom_google_app_id' => $google_app_id), 'setting');
+    $data = array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'google-signin-client_id',
+        'content' => $google_app_id,
+      ),
+    );
+    drupal_add_html_head($data, 'google');
+    drupal_add_js('https://apis.google.com/js/platform.js?onload=google_onLoadGoogleCallback', array('external' => true, 'async' => true, 'defer' => true));
+    drupal_add_js(drupal_get_path('module', 'custom_google') . '/custom_google.js');
+  }
+}
+
+/**
+ * Helper function to check and make sure Google settings has been done.
+ */
+function _custom_google_settings_is_done() {
+  // Get stored settings.
+  $google_app_id = variable_get('custom_google_app_id', '');
+  $google_app_secret = variable_get('custom_google_app_secret', '');
+
+  if ($google_app_id == '' or $google_app_secret == '') {
+    drupal_set_message(t('You have not done setting up Google App Id and Secret key.'), 'error');
+    return false;
+  }
+  
+  return true;
+}

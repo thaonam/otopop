@@ -1,0 +1,10 @@
+name = Custom Google Connect
+description = Google login and other features.
+core = 7.x
+
+configure = admin/config/custom_google
+
+package = "OTOPOP"
+project = "google"
+version = "7.x-1.0"
+dependencies[] = custom:custom

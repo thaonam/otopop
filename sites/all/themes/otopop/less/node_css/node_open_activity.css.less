@@ -1,0 +1,300 @@
+/*node-open-activity-teaser2*/
+.node-open-activity-teaser2 {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+
+  .field_img {
+    img {
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+  }
+
+  .field_title {
+    padding: 6px 0 0;
+    height: 25px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc(100% - 1px);
+  }
+
+  .button_action {
+    margin-top: auto;
+
+    a.btn-join {
+      background: linear-gradient(to left, #a4e740, #43e764);
+      /* display: block; */
+      padding: 8px 9px;
+      display: inline-block;
+      width: 80px;
+      text-align: center;
+      color: #333;
+      border-radius: 10px;
+      margin-top: 6px;
+    }
+  }
+
+  .field_map {
+    max-height: 55px;
+    display: flex;
+    text-align: left;
+    font-size: 13px;
+
+    svg {
+      margin-right: 5px;
+      margin-top: 2px;
+      color: #08750a;
+    }
+  }
+}
+
+/*node-open-activity-teaser*/
+
+.node-open-activity-teaser {
+  padding: 12px 0;
+
+  h2 {
+    margin-top: 0;
+    font-size: 18px;
+
+    a {
+      font-size: inherit;
+      color: initial;
+      font-weight: 600;
+    }
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .field_img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #fff;
+
+    img {
+      height: 100%;
+      width: 100%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+    }
+  }
+
+  .field-name-field-date {
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: 600;
+
+  }
+
+  .field_map {
+    display: flex;
+
+    svg {
+      margin-right: 5px;
+      margin-top: 2px;
+      color: #08750a;
+    }
+  }
+
+  .field_content > * {
+    padding-left: 15px;
+  }
+
+  .field.field-name-field-date {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    &:after {
+      content: '';
+      display: block;
+      height: 70%;
+      width: 1px;
+      background: #333;
+      position: absolute;
+      right: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .field_date {
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+
+    span:first-child {
+      line-height: 1.2;
+      font-size: 24px;
+      font-weight: bold;
+
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 1px;
+      height: 70%;
+      background: #333;
+      right: -10px;
+    }
+  }
+}
+/**
+*Node Open Activity Manage
+**/
+.node-open-activity-manage {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 46px 0;
+  border-bottom: 1px solid #ddd;
+
+  .field-image {
+    margin-right: 30px;
+    margin-left: 20px;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+
+  .activity-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
+.field-invited{
+  margin-bottom: 10px;
+}
+
+  .list-circle {
+    margin-bottom: 10px;
+
+    span {
+      width: 30px;
+      height: 30px;
+      background: #ccc;
+      display: inline-block;
+      border-radius: 50%;
+    }
+  }
+
+  .field-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .button_action {
+    margin-left: auto;
+
+    a.btn-join {
+      width: 120px;
+      display: block;
+      text-align: center;
+      background: #cccccc;
+      padding: 10px;
+      border-radius: 15px;
+      margin-right: 15px;
+      &.joined{
+        cursor: no-drop;
+        background-color: #22b14c;
+        color: #fff !important;
+        &:hover, &:focus{
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+}/**
+*Node Open Activity Join
+**/
+.node-open-activity-join {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 46px 0;
+  border-bottom: 1px solid #ddd;
+
+  .field-image {
+    margin-right: 30px;
+    margin-left: 20px;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+
+  .activity-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
+.field-invited{
+  margin-bottom: 10px;
+}
+
+  .list-circle {
+    margin-bottom: 10px;
+
+    span {
+      width: 30px;
+      height: 30px;
+      background: #ccc;
+      display: inline-block;
+      border-radius: 50%;
+    }
+  }
+
+  .field-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .button_action {
+    margin-left: auto;
+
+    .btn-view {
+      width: 120px;
+      display: block;
+      text-align: center;
+      background: #cccccc;
+      padding: 8px 10px;
+      border-radius: 15px;
+      margin-right: 15px;
+      &:focus, &:hover, &:active{
+        outline: none;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,200 @@
+
+.page-user-register {
+  background: #f2f2f2;
+
+  header {
+    .navbar-brand {
+      padding: 5px 10px;
+
+      > img {
+        display: block;
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    .button-login a {
+      display: block;
+      padding: 8px 25px;
+      background: #ccc;
+      height: 100%;
+      margin: 7px;
+      border-radius: 102px;
+      font-weight: 600;
+    }
+  }
+
+  #page-wrapper {
+    margin-top: 60px;
+  }
+
+  .content-wrapper {
+    padding-top: 60px;
+    //min-height: ~'calc(100vh - 60px - 155px)';
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+  }
+
+  .content {
+    background: #e1e1e1;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+
+    > .row {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+
+    }
+  }
+
+  ul.custom-social-list {
+    li {
+      padding: 10px 20px;
+      background: #ccc;
+      margin-bottom: 10px;
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      color: #fff;
+
+      &#facebookSignin {
+        background: #3e48a9;
+      }
+
+      &#googleSignIn {
+        background: #d83030;
+
+      }
+    }
+  }
+
+  .sign-in__social {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    h2 {
+      width: 100%;
+      text-align: left;
+      padding-left: 20px;
+
+      span {
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
+
+    ul {
+      padding: 0px 20px;
+      width: 100%;
+    }
+  }
+
+  .line-or {
+    position: absolute;
+    left: 58.33333333%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+
+    &:before, &:after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 35%;
+      position: absolute;
+      background: #ccc;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &:before {
+      top: 10%;
+    }
+
+    &:after {
+      bottom: 10%;
+    }
+  }
+
+  form.user-info-from-cookie {
+    padding: 20px;
+
+    > div > div {
+      float: left;
+    }
+
+    &:before, &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    .form-item-pass .form-item {
+      width: 100%;
+    }
+
+    div#edit-field-birthdate, div#edit-field-gender {
+      float: left;
+      width: 50%;
+    }
+
+    .form-type-password-confirm .password-help {
+      position: static;
+    }
+
+    .field-name-field-birthdate {
+      fieldset#bootstrap-panel {
+        background: transparent;
+        box-shadow: none;
+        border: 0;
+
+        > .panel-heading {
+          max-width: 100%;
+          margin-bottom: 5px;
+          font-weight: bold;
+          background: transparent !important;
+          border: transparent;
+          padding: 0;
+
+          .panel-title {
+            font-size: 15px;
+          }
+        }
+
+        .panel-body, .panel-body * {
+          width: 100%;
+          padding: 0 !important;
+          margin-right: 0;
+        }
+
+        .form-item-field-birthdate-und-0-value-date.form-type-textfield.form-group {
+          input {
+            width: 100%;
+          }
+
+          label {
+            display: none;
+          }
+        }
+      }
+    }
+
+    div#edit-account {
+      margin-bottom: 0;
+    }
+  }
+}
+
+

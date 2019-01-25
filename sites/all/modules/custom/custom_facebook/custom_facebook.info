@@ -1,0 +1,10 @@
+name = Custom Facebook Connect
+description = Facebook login and features.
+core = 7.x
+
+configure = admin/config/custom_facebook
+
+package = "OTOPOP"
+project = "custom_facebook"
+version = "7.x-1.0"
+dependencies[] = custom:custom
